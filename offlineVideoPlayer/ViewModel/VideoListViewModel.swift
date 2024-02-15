@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Network
 
 class VideoListViewModel: ObservableObject {
     @Published var videos: [Video] = []

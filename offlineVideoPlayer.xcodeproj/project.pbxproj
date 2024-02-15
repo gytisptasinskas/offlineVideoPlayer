@@ -23,6 +23,7 @@
 		48B07FA52B7CB44B008E701E /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FA42B7CB44B008E701E /* PreviewProvider.swift */; };
 		48B07FA92B7CB549008E701E /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FA82B7CB549008E701E /* DownloadService.swift */; };
 		48B07FAB2B7CEA76008E701E /* VideoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FAA2B7CEA76008E701E /* VideoDetailViewModel.swift */; };
+		48B07FB12B7DF12D008E701E /* DownloadedVideo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FAF2B7DF12D008E701E /* DownloadedVideo.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		48B07FA42B7CB44B008E701E /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		48B07FA82B7CB549008E701E /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		48B07FAA2B7CEA76008E701E /* VideoDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewModel.swift; sourceTree = "<group>"; };
+		48B07FB02B7DF12D008E701E /* OfflineVideos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OfflineVideos.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				48B07F632B7CB1ED008E701E /* offlineVideoPlayerApp.swift */,
 				48B07F672B7CB1F3008E701E /* Assets.xcassets */,
 				48B07F692B7CB1F3008E701E /* Preview Content */,
+				48B07FAF2B7DF12D008E701E /* DownloadedVideo.xcdatamodeld */,
 			);
 			path = offlineVideoPlayer;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				48B07FA52B7CB44B008E701E /* PreviewProvider.swift in Sources */,
 				48B07F642B7CB1ED008E701E /* offlineVideoPlayerApp.swift in Sources */,
 				48B07FA92B7CB549008E701E /* DownloadService.swift in Sources */,
+				48B07FB12B7DF12D008E701E /* DownloadedVideo.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,6 +700,19 @@
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		48B07FAF2B7DF12D008E701E /* DownloadedVideo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				48B07FB02B7DF12D008E701E /* OfflineVideos.xcdatamodel */,
+			);
+			currentVersion = 48B07FB02B7DF12D008E701E /* OfflineVideos.xcdatamodel */;
+			path = DownloadedVideo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48B07F582B7CB1ED008E701E /* Project object */;
 }

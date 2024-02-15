@@ -15,7 +15,7 @@ struct VideoListView: View {
         NavigationStack {
             List(viewModel.videos) { video in
                 NavigationLink {
-                    VideoDetailView(video: video)
+                    VideoDetailView(viewModel: VideoDetailViewModel(video: video))
                 } label: {
                     VStack {
                         HStack(spacing: 20) {
