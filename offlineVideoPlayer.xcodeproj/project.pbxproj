@@ -24,6 +24,7 @@
 		48B07FA92B7CB549008E701E /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FA82B7CB549008E701E /* DownloadService.swift */; };
 		48B07FAB2B7CEA76008E701E /* VideoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FAA2B7CEA76008E701E /* VideoDetailViewModel.swift */; };
 		48B07FB12B7DF12D008E701E /* DownloadedVideo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FAF2B7DF12D008E701E /* DownloadedVideo.xcdatamodeld */; };
+		48B07FB52B7E2751008E701E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B07FB42B7E2751008E701E /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		48B07FA82B7CB549008E701E /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		48B07FAA2B7CEA76008E701E /* VideoDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDetailViewModel.swift; sourceTree = "<group>"; };
 		48B07FB02B7DF12D008E701E /* OfflineVideos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OfflineVideos.xcdatamodel; sourceTree = "<group>"; };
+		48B07FB42B7E2751008E701E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			children = (
 				48B07F902B7CB281008E701E /* PixabayService.swift */,
 				48B07FA82B7CB549008E701E /* DownloadService.swift */,
+				48B07FB42B7E2751008E701E /* CoreDataStack.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				48B07FA02B7CB39D008E701E /* VideoListViewModel.swift in Sources */,
 				48B07F8F2B7CB215008E701E /* Video.swift in Sources */,
 				48B07F912B7CB281008E701E /* PixabayService.swift in Sources */,
+				48B07FB52B7E2751008E701E /* CoreDataStack.swift in Sources */,
 				48B07FA52B7CB44B008E701E /* PreviewProvider.swift in Sources */,
 				48B07F642B7CB1ED008E701E /* offlineVideoPlayerApp.swift in Sources */,
 				48B07FA92B7CB549008E701E /* DownloadService.swift in Sources */,

@@ -43,7 +43,6 @@ struct VideoListView: View {
                     await viewModel.fetchVideos()
                 }
             }
-            
         }
     }
 }

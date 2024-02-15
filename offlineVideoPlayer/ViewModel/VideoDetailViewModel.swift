@@ -22,7 +22,8 @@ class VideoDetailViewModel: ObservableObject {
     
     func checkIfVideoIsDownloaded() {
         Task {
-            self.isDownloaded = await isVideoDownloaded(id: video.id)
+            let downloaded = await isVideoDownloaded(id: video.id)
+            self.isDownloaded = downloaded
         }
     }
     
@@ -48,25 +49,28 @@ class VideoDetailViewModel: ObservableObject {
         downloadedVideo.thumbnailURL = video.picture_id
         downloadedVideo.user = video.user
 
-        await MainActor.run {
-            do {
-                try context.save()
-                self.isDownloaded = true
-            } catch {
-                print("Error saving video locally: \(error.localizedDescription)")
-            }
+        do {
+            try context.save()
+            updateDownloadedStatus(true)
+        } catch {
+            print("Error saving video locally: \(error.localizedDescription)")
         }
     }
-    
+
+    @MainActor
+    private func updateDownloadedStatus(_ downloaded: Bool) {
+        self.isDownloaded = downloaded
+    }
+
     func localVideoURL() async -> URL? {
         let context = CoreDataStack.shared.viewContext
         let fetchRequest: NSFetchRequest<DownloadedVideo> = DownloadedVideo.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %lld", Int64(video.id))
-
+        
         do {
             let results = try context.fetch(fetchRequest)
             if let downloadedVideo = results.first, let localPath = downloadedVideo.localURL {
-                return URL(fileURLWithPath: localPath)
+                return URL(fileURLWithPath: localPath, relativeTo: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first)
             }
         } catch {
             print("Error fetching downloaded video URL: \(error.localizedDescription)")
@@ -86,24 +90,6 @@ class VideoDetailViewModel: ObservableObject {
             print("Error checking video download status: \(error)")
             return false
         }
-    }
-}
-
-class CoreDataStack {
-    static let shared = CoreDataStack()
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "DownloadedVideo")
-        container.loadPersistentStores { _, error in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        }
-        return container
-    }()
-    
-    var viewContext: NSManagedObjectContext {
-        return persistentContainer.viewContext
     }
 }
 

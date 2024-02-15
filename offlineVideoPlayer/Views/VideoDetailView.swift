@@ -13,8 +13,7 @@ struct VideoDetailView: View {
     @State private var videoURL: URL?
     @State private var player: AVPlayer?
     var body: some View {
-        VStack {
-            
+        VStack(alignment: .leading) {
             if let player = player {
                 VideoPlayer(player: player)
                     .frame(height: 200)
@@ -29,11 +28,14 @@ struct VideoDetailView: View {
             }
             
             Text(viewModel.video.user ?? "Unknown User")
-                .font(.headline)
+                .font(.title)
+                .fontWeight(.semibold)
             
             Text(viewModel.video.tags ?? "No Tags")
                 .font(.subheadline)
                 .padding(.bottom)
+            
+            Spacer()
         }
         .toolbar {
             Button{
@@ -52,19 +54,29 @@ struct VideoDetailView: View {
             }
         }
         .navigationTitle(viewModel.video.user ?? "Video Detail")
+        .navigationBarTitleDisplayMode(.inline)
         .padding()
     }
     
     private func setupVideoPlayer() async {
-        if let localURL = await viewModel.localVideoURL() {
-            print("Playing from local storage: \(localURL.path)")
-            player = AVPlayer(url: localURL)
-            player?.play()
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        if let localPath = await viewModel.localVideoURL() {
+            let fullLocalURL = documentsDirectory.appendingPathComponent(localPath.path)
+            
+            if fileManager.fileExists(atPath: fullLocalURL.path) {
+                print("Playing from local storage: \(fullLocalURL.path)")
+                player = AVPlayer(url: fullLocalURL)
+            } else {
+                print("Local file not found at: \(fullLocalURL.path)")
+            }
         } else if let remoteURLString = viewModel.video.videos?.large?.url, let remoteURL = URL(string: remoteURLString) {
             print("Playing from remote URL: \(remoteURLString)")
             player = AVPlayer(url: remoteURL)
-            player?.play()
         }
+        
+        player?.play()
     }
 }
 
