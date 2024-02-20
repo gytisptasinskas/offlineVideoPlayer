@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class VideoListViewModel: ObservableObject {
     @Published var videos: [Video] = []
@@ -18,7 +19,20 @@ class VideoListViewModel: ObservableObject {
             let videoItems = try await videoService.fetchVideos(query: "Dogs")
             self.videos = videoItems
         } catch {
-            print("Error fetching videos: \(error)")
+            print("Error fetching videos: \(error.localizedDescription), showing locally saved videos.")
+            await fetchLocallySavedVideos()
+        }
+    }
+    
+    @MainActor
+    private func fetchLocallySavedVideos() async {
+        let context = CoreDataStack.shared.viewContext
+        let fetchRequest: NSFetchRequest<DownloadedVideo> = DownloadedVideo.fetchRequest()
+        do {
+            let results = try context.fetch(fetchRequest)
+            self.videos = results.map(Video.init)
+        } catch {
+            print("Error fetching locally saved videos: \(error.localizedDescription)")
         }
     }
 }

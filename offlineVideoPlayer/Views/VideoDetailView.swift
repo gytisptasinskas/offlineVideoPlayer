@@ -38,7 +38,7 @@ struct VideoDetailView: View {
             Spacer()
         }
         .toolbar {
-            Button{
+            Button {
                 Task {
                     await viewModel.downloadVideo()
                 }
@@ -48,10 +48,8 @@ struct VideoDetailView: View {
             }
             .disabled(viewModel.isDownloaded)
         }
-        .onAppear {
-            Task {
-                await setupVideoPlayer()
-            }
+        .task {
+            await setupVideoPlayer()
         }
         .navigationTitle(viewModel.video.user ?? "Video Detail")
         .navigationBarTitleDisplayMode(.inline)

@@ -28,8 +28,43 @@ struct Video: Identifiable, Codable, Hashable {
          guard let pictureId = picture_id else { return nil }
          return "https://i.vimeocdn.com/video/\(pictureId)_640x360.jpg"
      }
-}
+    
+    init(id: Int, pageURL: String?, type: String?, tags: String?, duration: Int?, picture_id: String?, videos: VideoFormats?, views: Int?, downloads: Int?, likes: Int?, comments: Int?, user_id: Int?, user: String?, userImageURL: String?) {
+        self.id = id
+        self.pageURL = pageURL
+        self.type = type
+        self.tags = tags
+        self.duration = duration
+        self.picture_id = picture_id
+        self.videos = videos
+        self.views = views
+        self.downloads = downloads
+        self.likes = likes
+        self.comments = comments
+        self.user_id = user_id
+        self.user = user
+        self.userImageURL = userImageURL
+    }
+    
+    init(from downloadedVideo: DownloadedVideo) {
+        self.id = Int(downloadedVideo.id)
+        self.pageURL = nil
+        self.type = nil
+        self.tags = downloadedVideo.tags
+        self.duration = nil
+        self.picture_id = downloadedVideo.thumbnailURL
+        self.videos = VideoFormats(large: VideoFormatDetail(url: downloadedVideo.largeURL, width: nil, height: nil, size: nil), medium: nil, small: nil, tiny: nil)
+        self.views = nil
+        self.downloads = nil
+        self.likes = nil
+        self.comments = nil
+        self.user_id = nil
+        self.user = downloadedVideo.user
+        self.userImageURL = nil
+    }
 
+
+}
 
 struct VideoResponse: Codable {
     let total: Int
@@ -50,3 +85,4 @@ struct VideoFormatDetail: Codable, Hashable {
     let height: Int?
     let size: Int?
 }
+

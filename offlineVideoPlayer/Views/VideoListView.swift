@@ -38,10 +38,8 @@ struct VideoListView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Videos")
-            .onAppear {
-                Task {
-                    await viewModel.fetchVideos()
-                }
+            .task {
+                await viewModel.fetchVideos()
             }
         }
     }
